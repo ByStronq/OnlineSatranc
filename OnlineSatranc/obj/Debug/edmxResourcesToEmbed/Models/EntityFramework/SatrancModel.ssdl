@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineSatrancModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="arkadasliklar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gonderenID" Type="int" Nullable="false" />
+    <Property Name="alıcıID" Type="int" Nullable="false" />
+    <Property Name="arkadaslikDurumu" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hamleler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="notasyon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pozisyon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="odaNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="kullanicilar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="ePosta" Type="nvarchar" MaxLength="50" />
+    <Property Name="gsm" Type="nvarchar" MaxLength="50" />
+    <Property Name="kAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ELO" Type="int" Nullable="false" />
+    <Property Name="dgmTarihi" Type="datetime" />
+    <Property Name="cinsiyet" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="satrancTahtalari">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="odaSahibi" Type="int" Nullable="false" />
+    <Property Name="rakip" Type="int" />
+  </EntityType>
+  <Association Name="FK_arkadasliklar_alan">
+    <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+    <End Role="arkadasliklar" Type="Self.arkadasliklar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kullanicilar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="arkadasliklar">
+        <PropertyRef Name="alıcıID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_arkadasliklar_gonderen">
+    <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+    <End Role="arkadasliklar" Type="Self.arkadasliklar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kullanicilar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="arkadasliklar">
+        <PropertyRef Name="gonderenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hamleler_satrancTahtalari">
+    <End Role="satrancTahtalari" Type="Self.satrancTahtalari" Multiplicity="1" />
+    <End Role="hamleler" Type="Self.hamleler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="satrancTahtalari">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="hamleler">
+        <PropertyRef Name="odaNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satrancTahtalari_odaSahibi">
+    <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+    <End Role="satrancTahtalari" Type="Self.satrancTahtalari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kullanicilar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="satrancTahtalari">
+        <PropertyRef Name="odaSahibi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satrancTahtalari_rakip">
+    <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="0..1" />
+    <End Role="satrancTahtalari" Type="Self.satrancTahtalari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kullanicilar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="satrancTahtalari">
+        <PropertyRef Name="rakip" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineSatrancModelStoreContainer">
+    <EntitySet Name="arkadasliklar" EntityType="Self.arkadasliklar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hamleler" EntityType="Self.hamleler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="satrancTahtalari" EntityType="Self.satrancTahtalari" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_arkadasliklar_alan" Association="Self.FK_arkadasliklar_alan">
+      <End Role="kullanicilar" EntitySet="kullanicilar" />
+      <End Role="arkadasliklar" EntitySet="arkadasliklar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_arkadasliklar_gonderen" Association="Self.FK_arkadasliklar_gonderen">
+      <End Role="kullanicilar" EntitySet="kullanicilar" />
+      <End Role="arkadasliklar" EntitySet="arkadasliklar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hamleler_satrancTahtalari" Association="Self.FK_hamleler_satrancTahtalari">
+      <End Role="satrancTahtalari" EntitySet="satrancTahtalari" />
+      <End Role="hamleler" EntitySet="hamleler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satrancTahtalari_odaSahibi" Association="Self.FK_satrancTahtalari_odaSahibi">
+      <End Role="kullanicilar" EntitySet="kullanicilar" />
+      <End Role="satrancTahtalari" EntitySet="satrancTahtalari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satrancTahtalari_rakip" Association="Self.FK_satrancTahtalari_rakip">
+      <End Role="kullanicilar" EntitySet="kullanicilar" />
+      <End Role="satrancTahtalari" EntitySet="satrancTahtalari" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

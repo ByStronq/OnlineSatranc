@@ -1,0 +1,217 @@
+﻿@using OnlineSatranc.Models
+@using OnlineSatranc.Models.EntityFramework
+@model satrancTahtalari
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string rankPrefix = null, rankPrefixString = null;
+    string rakip_kAdi;
+    bool rakipCinsiyet;
+    int rakip_ELO;
+}
+<div class="row" data-odasahip="@Model.kullanicilar.ID">
+    <div class="card col-2" id="sahip" style="width:400px">
+
+        @if (Model.kullanicilar1 == null) {
+
+            rakip_kAdi = "Rakip Bekleniyor..";
+            rakipCinsiyet = true;
+            rakip_ELO = 0;
+
+        }
+        else
+        {
+            rakip_kAdi = Model.kullanicilar1.kAdi;
+            rakipCinsiyet = Model.kullanicilar1.cinsiyet;
+            rakip_ELO = Model.kullanicilar1.ELO;
+
+        }
+
+        @if (Model.kullanicilar.cinsiyet)
+        {
+            <img class="card-img-top" src='~/Content/img/avatar/img_avatar1.png' alt="Card image">
+        }
+        else
+        {
+            <img class="card-img-top" src='~/Content/img/avatar/img_avatar2.png' alt="Card image">
+            rankPrefix = "W";
+            rankPrefixString = "Woman";
+        }
+        <div class="card-body">
+            <h4 class="card-title">@Model.kullanicilar.kAdi</h4>
+            <p class="card-text">
+                Oda Sahibi
+            </p>
+            <p class="card-text">
+
+                @if (Model.kullanicilar.ELO > 0 && Model.kullanicilar.ELO < 500)
+                {
+                    <img src="~/Content/img/rutbeler/kale.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "CM")</b> (@rankPrefixString Candidate Master - Usta Adayı)</span>
+                }
+                else if (Model.kullanicilar.ELO >= 500 && Model.kullanicilar.ELO < 1000)
+                {
+                    <img src="~/Content/img/rutbeler/at.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "FM")</b> (@rankPrefixString FIDE Master - FIDE Ustası)</span>
+                }
+                else if (Model.kullanicilar.ELO >= 1000 && Model.kullanicilar.ELO < 1500)
+                {
+                    <img src="~/Content/img/rutbeler/vezir.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "IM")</b> (@rankPrefixString International Master - Uluslararası Usta)</span>
+                }
+                else if (Model.kullanicilar.ELO >= 1500)
+                {
+                    <img src="~/Content/img/rutbeler/sah.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "GM")</b> (@rankPrefixString Grand Master - Büyük Usta)</span>
+                }
+                else
+                {
+                    <span><b>UNRANKED!</b></span>
+                }
+
+            </p>
+            <a href="#" class="btn btn-primary">Profili Gör</a>
+        </div>
+    </div>
+
+    <select id="temaSecim">
+        <option value="1">Siyah - Beyaz</option>
+        <option value="2">Turuncu - Açık Gri</option>
+    </select>
+
+    <table class="satrancTahtasi col-2" data-odaid ="@Model.ID">
+        <tr>
+            <td><div id="a8" class="ikincilKutu"><img src="~/Content/img/taslar/kale.png" id="tasBoyutu" data-tasprefix="K" data-tasrenk="siyah" /></div></td>
+            <td><div id="b8"><img src="~/Content/img/taslar/at.png" id="tasBoyutu" data-tasprefix="A" data-tasrenk="siyah" /></div></td>
+            <td><div id="c8" class="ikincilKutu"><img src="~/Content/img/taslar/fil.png" id="tasBoyutu" data-tasprefix="F" data-tasrenk="siyah" /></div></td>
+            <td><div id="d8"><img src="~/Content/img/taslar/vezir.png" id="tasBoyutu" data-tasprefix="V" data-tasrenk="siyah" /></div></td>
+            <td><div id="e8" class="ikincilKutu"><img src="~/Content/img/taslar/sah.png" id="tasBoyutu" data-tasprefix="Ş" data-tasrenk="siyah" /></div></td>
+            <td><div id="f8"><img src="~/Content/img/taslar/fil.png" id="tasBoyutu" data-tasprefix="F" data-tasrenk="siyah" /></div></td>
+            <td><div id="g8" class="ikincilKutu"><img src="~/Content/img/taslar/at.png" id="tasBoyutu" data-tasprefix="A" data-tasrenk="siyah" /></div></td>
+            <td><div id="h8"><img src="~/Content/img/taslar/kale.png" id="tasBoyutu" data-tasprefix="K" data-tasrenk="siyah" /></div></td>
+        </tr>
+        <tr>
+            <td><div id="a7"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="b7" class="ikincilKutu"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="c7"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="d7" class="ikincilKutu"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="e7"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="f7" class="ikincilKutu"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="g7"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+            <td><div id="h7" class="ikincilKutu"><img src="~/Content/img/taslar/piyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="siyah" /></div></td>
+        </tr>
+        <tr>
+            <td><div id="a6" class="ikincilKutu"></div></td>
+            <td><div id="b6"></div></td>
+            <td><div id="c6" class="ikincilKutu"></div></td>
+            <td><div id="d6"></div></td>
+            <td><div id="e6" class="ikincilKutu"></div></td>
+            <td><div id="f6"></div></td>
+            <td><div id="g6" class="ikincilKutu"></div></td>
+            <td><div id="h6"></div></td>
+        </tr>
+        <tr>
+            <td><div id="a5"></div></td>
+            <td><div id="b5" class="ikincilKutu"></div></td>
+            <td><div id="c5"></div></td>
+            <td><div id="d5" class="ikincilKutu"></div></td>
+            <td><div id="e5"></div></td>
+            <td><div id="f5" class="ikincilKutu"></div></td>
+            <td><div id="g5"></div></td>
+            <td><div id="h5" class="ikincilKutu"></div></td>
+        </tr>
+        <tr>
+            <td><div id="a4" class="ikincilKutu"></div></td>
+            <td><div id="b4"></div></td>
+            <td><div id="c4" class="ikincilKutu"></div></td>
+            <td><div id="d4"></div></td>
+            <td><div id="e4" class="ikincilKutu"></div></td>
+            <td><div id="f4"></div></td>
+            <td><div id="g4" class="ikincilKutu"></div></td>
+            <td><div id="h4"></div></td>
+        </tr>
+        <tr>
+            <td><div id="a3"></div></td>
+            <td><div id="b3" class="ikincilKutu"></div></td>
+            <td><div id="c3"></div></td>
+            <td><div id="d3" class="ikincilKutu"></div></td>
+            <td><div id="e3"></div></td>
+            <td><div id="f3" class="ikincilKutu"></div></td>
+            <td><div id="g3"></div></td>
+            <td><div id="h3" class="ikincilKutu"></div></td>
+        </tr>
+        <tr>
+            <td><div id="a2" class="ikincilKutu"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="b2"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="c2" class="ikincilKutu"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="d2"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="e2" class="ikincilKutu"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="f2"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="g2" class="ikincilKutu"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+            <td><div id="h2"><img src="~/Content/img/taslar/beyazPiyon.png" id="tasBoyutu" data-tasprefix="" data-tasrenk="beyaz" /></div></td>
+        </tr>
+        <tr>
+            <td><div id="a1"><img src="~/Content/img/taslar/beyazKale.png" id="tasBoyutu" data-tasprefix="K" data-tasrenk="beyaz" /></div></td>
+            <td><div id="b1" class="ikincilKutu"><img src="~/Content/img/taslar/beyazAt.png" id="tasBoyutu" data-tasprefix="A" data-tasrenk="beyaz" /></div></td>
+            <td><div id="c1"><img src="~/Content/img/taslar/beyazFil.png" id="tasBoyutu" data-tasprefix="F" data-tasrenk="beyaz" /></div></td>
+            <td><div id="d1" class="ikincilKutu"><img src="~/Content/img/taslar/beyazVezir.png" id="tasBoyutu" data-tasprefix="V" data-tasrenk="beyaz" /></div></td>
+            <td><div id="e1"><img src="~/Content/img/taslar/beyazSah.png" id="tasBoyutu" data-tasprefix="Ş" data-tasrenk="beyaz" /></div></td>
+            <td><div id="f1" class="ikincilKutu"><img src="~/Content/img/taslar/beyazFil.png" id="tasBoyutu" data-tasprefix="F" data-tasrenk="beyaz" /></div></td>
+            <td><div id="g1"><img src="~/Content/img/taslar/beyazAt.png" id="tasBoyutu" data-tasprefix="A" data-tasrenk="beyaz" /></div></td>
+            <td><div id="h1" class="ikincilKutu"><img src="~/Content/img/taslar/beyazKale.png" id="tasBoyutu" data-tasprefix="K" data-tasrenk="beyaz" /></div></td>
+        </tr>
+    </table>
+
+    <div class="card col-2" style="width:400px" id="rakip">
+
+        @if (rakipCinsiyet)
+        {
+            rankPrefix = "";
+            rankPrefixString = "";
+            <img class="card-img-top" src='~/Content/img/avatar/img_avatar1.png' alt="Card image">
+        }
+        else
+        {
+            <img class="card-img-top" src='~/Content/img/avatar/img_avatar2.png' alt="Card image">
+            rankPrefix = "W";
+            rankPrefixString = "Woman";
+        }
+        <div class="card-body">
+            <h4 class="card-title">@rakip_kAdi</h4>
+            <p class="card-text">
+                Konuk:
+            </p>
+            <p class="card-text">
+
+                @if (rakip_ELO > 0 && rakip_ELO < 500)
+                {
+                    <img src="~/Content/img/rutbeler/kale.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "CM")</b> (@rankPrefixString Candidate Master - Usta Adayı)</span>
+                }
+                else if (rakip_ELO >= 500 && rakip_ELO < 1000)
+                {
+                    <img src="~/Content/img/rutbeler/at.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "FM")</b> (@rankPrefixString FIDE Master - FIDE Ustası)</span>
+                }
+                else if (rakip_ELO >= 1000 && rakip_ELO < 1500)
+                {
+                    <img src="~/Content/img/rutbeler/vezir.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "IM")</b> (@rankPrefixString International Master - Uluslararası Usta)</span>
+                }
+                else if (rakip_ELO >= 1500)
+                {
+                    <img src="~/Content/img/rutbeler/sah.png" id="rutbeBoyutu" />
+                    <span><b>@(rankPrefix + "GM")</b> (@rankPrefixString Grand Master - Büyük Usta)</span>
+                }
+                else
+                {
+                    <img src="" id="rutbeBoyutu" hidden />
+                    <span id="rutbeText"><b>UNRANKED!</b></span>
+                }
+
+            </p>
+            <a href="#" class="btn btn-primary">Profili Gör</a>
+        </div>
+    </div>
+</div>

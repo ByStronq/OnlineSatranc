@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineSatrancModelStoreContainer" CdmEntityContainer="OnlineSatrancEntities">
+    <EntitySetMapping Name="arkadasliklar">
+      <EntityTypeMapping TypeName="OnlineSatrancModel.arkadasliklar">
+        <MappingFragment StoreEntitySet="arkadasliklar">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="gonderenID" ColumnName="gonderenID" />
+          <ScalarProperty Name="alıcıID" ColumnName="alıcıID" />
+          <ScalarProperty Name="arkadaslikDurumu" ColumnName="arkadaslikDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hamleler">
+      <EntityTypeMapping TypeName="OnlineSatrancModel.hamleler">
+        <MappingFragment StoreEntitySet="hamleler">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="notasyon" ColumnName="notasyon" />
+          <ScalarProperty Name="pozisyon" ColumnName="pozisyon" />
+          <ScalarProperty Name="odaNo" ColumnName="odaNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicilar">
+      <EntityTypeMapping TypeName="OnlineSatrancModel.kullanicilar">
+        <MappingFragment StoreEntitySet="kullanicilar">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="ePosta" ColumnName="ePosta" />
+          <ScalarProperty Name="gsm" ColumnName="gsm" />
+          <ScalarProperty Name="kAdi" ColumnName="kAdi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="ELO" ColumnName="ELO" />
+          <ScalarProperty Name="dgmTarihi" ColumnName="dgmTarihi" />
+          <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="satrancTahtalari">
+      <EntityTypeMapping TypeName="OnlineSatrancModel.satrancTahtalari">
+        <MappingFragment StoreEntitySet="satrancTahtalari">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="odaSahibi" ColumnName="odaSahibi" />
+          <ScalarProperty Name="rakip" ColumnName="rakip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

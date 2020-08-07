@@ -1,0 +1,70 @@
+﻿@using OnlineSatranc.Models.EntityFramework
+@model kullanicilar
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+string hitap = null, rankPrefix = null, rankPrefixString = null;
+}
+<div class="card" style="width:400px">
+
+    @if (Model.cinsiyet)
+    {
+        <img class="card-img-top" src='~/Content/img/avatar/img_avatar1.png' alt="Card image">
+        hitap = "Bey!";
+    }
+    else
+    {
+        <img class="card-img-top" src='~/Content/img/avatar/img_avatar2.png' alt="Card image">
+        hitap = "Hanım!";
+        rankPrefix = "W";
+        rankPrefixString = "Woman";
+    }
+    <div class="card-body">
+        <h4 class="card-title">@Model.kAdi</h4>
+        <p class="card-text">
+            Hoşgeldiniz @Model.Ad @hitap
+
+        </p>
+        <p class="card-text">
+
+            @if (Model.ELO > 0 && Model.ELO < 500)
+            {
+                <img src="~/Content/img/rutbeler/kale.png" id="rutbeBoyutu" />
+                <span><b>@(rankPrefix + "CM")</b> (@rankPrefixString Candidate Master - Usta Adayı)</span>
+            }
+            else if (Model.ELO >= 500 && Model.ELO < 1000)
+            {
+                <img src="~/Content/img/rutbeler/at.png" id="rutbeBoyutu" />
+                <span><b>@(rankPrefix + "FM")</b> (@rankPrefixString FIDE Master - FIDE Ustası)</span>
+            }
+            else if (Model.ELO >= 1000 && Model.ELO < 1500)
+            {
+                <img src="~/Content/img/rutbeler/vezir.png" id="rutbeBoyutu" />
+                <span><b>@(rankPrefix + "IM")</b> (@rankPrefixString International Master - Uluslararası Usta)</span>
+            }
+            else if (Model.ELO >= 1500)
+            {
+                <img src="~/Content/img/rutbeler/sah.png" id="rutbeBoyutu" />
+                <span><b>@(rankPrefix + "GM")</b> (@rankPrefixString Grand Master - Büyük Usta)</span>
+            }
+            else
+            {
+                <span><b>UNRANKED!</b></span>
+            }
+
+        </p>
+        <a href="#" class="btn btn-primary">Profili Gör</a>
+    </div>
+</div>
+
+<div class="d-inline p-2">
+    <button class="btn btn-primary btn-lg" id="macBul">Maç Bul</button>
+    <button class="btn btn-success btn-lg" id="macKur" data-bot="false">Maç Kur</button>
+    <div id="eslestirme" class="d-inline p-2"></div>
+    <button class="btn btn-success btn-lg" id="macKur" data-bot="true">Botla Oyna</button>
+    <audio id="music">
+        <source src="~/Content/sounds/matchmaking.mp3">
+    </audio>
+</div>

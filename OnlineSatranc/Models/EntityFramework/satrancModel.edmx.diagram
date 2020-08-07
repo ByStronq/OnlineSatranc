@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4fc99c9e3901499fa9cec6d98743d5a3" Name="Diagram1" ZoomLevel="167">
+        <EntityTypeShape EntityType="OnlineSatrancModel.arkadasliklar" Width="1.5" PointX="7.125" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatrancModel.hamleler" Width="1.5" PointX="9.375" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatrancModel.kullanicilar" Width="1.5" PointX="4.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatrancModel.satrancTahtalari" Width="1.5" PointX="7.125" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="OnlineSatrancModel.FK_arkadasliklar_alan" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatrancModel.FK_arkadasliklar_gonderen" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatrancModel.FK_hamleler_satrancTahtalari" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatrancModel.FK_satrancTahtalari_odaSahibi" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatrancModel.FK_satrancTahtalari_rakip" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

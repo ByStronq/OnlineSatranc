@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Kayit Ol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="w-25 p-3">
+    <form action="" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">@@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Kullanıcı Adı" name="kAdi">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Şifre:</label>
+            <input type="password" class="form-control" id="pwd" name="sifre">
+        </div>
+        <div class="form-group">
+            <label for="email">E-posta adresi:</label>
+            <input type="email" class="form-control" id="email" name="ePosta">
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="customRadio" name="cinsiyet" value="true">
+            <label class="custom-control-label" for="customRadio">Erkek</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="customRadio2" name="cinsiyet" value="false">
+            <label class="custom-control-label" for="customRadio2">Kadın</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+    </form>
+</div>
+
+

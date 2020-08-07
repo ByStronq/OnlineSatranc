@@ -1,0 +1,33 @@
+﻿.satrancTahtasi {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: orange;
+}
+
+.satrancTahtasi .ikincilKutu {
+    background-color: lightgrey;
+}
+
+.satrancTahtasi tr td div {
+    width: 128px;
+    height: 128px;
+}
+
+.satrancTahtasi tr td div #tasBoyutu {
+    width: 100px;
+    height: 100px;
+    margin: 14px;
+}
+
+img[id='rutbeBoyutu'] {
+    width: 15%;
+    height: 15%;
+}
+
+.seciliKutu1 {
+    background-color: green !important;
+}
+
+.seciliKutu2 {
+    background-color: orange !important;
+}
